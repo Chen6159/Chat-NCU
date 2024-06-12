@@ -118,7 +118,7 @@ public class WebSocketSingleServer extends TextWebSocketHandler {
         String json=message.getPayload();
         JsonNode jsonNode=objectMapper.readTree(json);
         Long userId=(Long)session.getAttributes().get("userId");
-        if(jsonNode.get("messageContent")!=null&&!jsonNode.get("messageContent").isEmpty()){
+        if(jsonNode.get("messageContent")!=null){
             ChatMessageDTO chatMessageDTO=objectMapper.readValue(json, ChatMessageDTO.class);
             ChatMessage chatMessageForSender=ChatMessage.builder()
                     .chatListId(chatMessageDTO.getChatListId())
