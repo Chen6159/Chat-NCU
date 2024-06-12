@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luck.chat.mapper.CategoryMapper">
+
+    <insert id="insertMemberList" >
+        insert into chat.group_chat_member (group_chat_id, user_id, role, join_time) VALUES
+        <foreach collection="chatMemberList" separator="," item="it">
+            (#{it.groupChatId},#{it.userId},#{it.role},#{it.joinTime})
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luck.chat.mapper.ChatMapper">
+    <insert id="insertChatMessageList" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+        insert into chat.chat_message (chat_list_id, user_id, message_content, message_type, read_status, send_time)values
+            <foreach collection="chatMessageList" item="it" separator=",">
+                (#{it.chatListId},#{it.userId},#{it.messageContent},#{it.messageType},#{it.readStatus},#{it.sendTime})
+            </foreach>
+    </insert>
+
+
+    <insert id="insertGroupChatList" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+        insert into chat.chat_list (sender_id, group_chat_id) values
+        <foreach collection="chatLists" item="it" separator=",">
+            (#{it.senderId},#{it.groupChatId})
+        </foreach>
+    </insert>
+</mapper>

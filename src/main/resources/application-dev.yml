@@ -1,0 +1,44 @@
+chat:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 
+    port: 
+    database: 
+    username: 
+    password: 
+  redis:
+    host: 
+    port: 
+    database: 
+    password: 
+  alioss:
+    endpoint: 
+    access-key-id: 
+    access-key-secret: 
+    bucket-name:
+    role-arn: 
+    role-session-name: 
+    expire-time: 3600
+    policy: |
+      {
+        "Version": "1",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": "oss:PutObject",
+            "Resource": [
+              "acs:oss:*:*:chat-ncu",
+              "acs:oss:*:*:chat-ncu/*"
+            ]
+          }
+        ]
+      }
+  alisms:
+    product: Dysmsapi
+    domain: dysmsapi.aliyuncs.com
+    access-key-id: 
+    access-key-secret: 
+    #短信签名
+    sign-name: 
+    #短信模板
+    template-code: 

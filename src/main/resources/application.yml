@@ -1,0 +1,57 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+spring:
+  application:
+    name: chat
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: ${chat.datasource.driver-class-name}
+    username: ${chat.datasource.username}
+    password: ${chat.datasource.password}
+    url: jdbc:mysql://${chat.datasource.host}:${chat.datasource.port}/${chat.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+  data:
+    redis:
+      host: ${chat.redis.host}
+      port: ${chat.redis.port}
+      database: ${chat.redis.database}
+      password: ${chat.redis.password}
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.luck.chat.pojo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+chat:
+  alioss:
+    #sts地域
+    endpoint: ${chat.alioss.endpoint}
+    access-key-id: ${chat.alioss.access-key-id}
+    access-key-secret: ${chat.alioss.access-key-secret}
+    bucket-name: ${chat.alioss.bucket-name}
+    #RAM用户的arn
+    role-arn: ${chat.alioss.role-arn}
+    #token名字(随意,主要区分其他token名字)
+    role-session-name: ${chat.alioss.role-session-name}
+    #token过期时间
+    expire-time: ${chat.alioss.expire-time}
+    #授权的访问策略
+    policy: ${chat.alioss.policy}
+
+
+  alisms:
+    product: ${chat.alisms.product}
+    domain: ${chat.alisms.domain}
+    access-key-id: ${chat.alisms.access-key-id}
+    access-key-secret: ${chat.alisms.access-key-secret}
+    sign-name: ${chat.alisms.sign-name}
+    template-code: ${chat.alisms.template-code}
+  jwt:
+    #签名密钥
+    secret-key:
+    #过期时间(3天)
+    expiration: 259200000
+    #令牌名称
+    token-name: Authorization
+

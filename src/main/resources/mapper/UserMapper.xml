@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luck.chat.mapper.UserMapper">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="user">
+        insert into chat.user (phone, username,avatar, description, gender, age, create_time)
+        values (#{phone},#{username},#{avatar},#{description},#{gender},#{age},#{createTime})
+    </insert>
+
+    <update id="update" parameterType="user">
+        update chat.user 
+        <set>
+            <if test="phone !=null">phone=#{phone},</if>
+            <if test="username !=null">username =#{username},</if>
+            <if test="avatar !=null">avatar =#{avatar},</if>
+            <if test="description !=null">description =#{description},</if>
+            <if test="gender !=null">gender =#{gender},</if>
+            <if test="age !=null">age=#{age},</if>
+        </set>
+        where id =#{id}
+    </update>
+</mapper>
